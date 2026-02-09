@@ -1,0 +1,12 @@
+<div class="progress-bar-container progress-bar-container-flex">
+  <div class="hero-flex">
+    <div class="title">SE Golden DreamTeam</div>
+    <div class="headline">Voortgang</div>
+  </div>
+  <div class="progress-bar">
+    <div class="progress"><span>789</span></div>
+  </div>
+  <div class="cta">
+    <a href="#" target="_blank">2000</a>
+  </div>
+</div>
