@@ -1,0 +1,244 @@
+<style>
+    :root {
+        --emdr-dark-blue: #023e8a; /* Dieper blauw voor de achtergrond */
+        --emdr-brand-blue: #0077b6; /* Helder blauw voor accenten */
+        --emdr-accent-blue: #caf0f8; /* Lichtblauw voor tekst en lijnen */
+        --success-green: #06d6a0; /* Sprankelend groen voor de vooruitgang */
+        --white: #ffffff;
+    }
+
+    body {
+        /* Achtergrond in de EMDRKit blauwtinten */
+        background: linear-gradient(135deg, var(--emdr-dark-blue) 0%, #001219 100%);
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        color: var(--white);
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.05); /* Transparante witte laag */
+        backdrop-filter: blur(10px); /* Glas-effect */
+        width: 100%;
+        max-width: 900px;
+        padding: 60px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+
+    h1 { 
+        color: var(--white);
+        font-size: 2.5rem; 
+        font-weight: 700;
+        margin: 0 0 10px 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .team-name {
+        font-size: 1.2rem;
+        color: var(--emdr-accent-blue);
+        margin-bottom: 130px;
+        font-weight: 300;
+    }
+
+    /* Strakke Progressie-omgeving */
+    .progress-section {
+        position: relative;
+        margin: 0 30px 100px 30px;
+    }
+
+    .track {
+        background: rgba(255, 255, 255, 0.1);
+        height: 16px;
+        border-radius: 8px;
+        position: relative;
+    }
+
+    .fill {
+        position: absolute;
+        left: 0; top: 0; height: 100%;
+        background: var(--success-green);
+        border-radius: 8px;
+        width: 0%; 
+        transition: width 2s cubic-bezier(0.34, 1.56, 0.64, 1); /* "Pop" effect */
+        box-shadow: 0 0 20px rgba(6, 214, 160, 0.4);
+        z-index: 2;
+    }
+
+    /* Mijlpalen */
+    .milestone-container {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        z-index: 10;
+    }
+
+    .marker {
+        position: absolute;
+        top: 0;
+        width: 2px;
+        height: 16px;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateX(-50%);
+    }
+
+    .milestone-content {
+        position: absolute;
+        top: -105px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 110px;
+    }
+
+    .circle-icon {
+        width: 65px;
+        height: 65px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        margin: 0 auto 8px auto;
+        opacity: 0.3;
+        transition: all 0.8s ease;
+    }
+
+    .milestone-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--emdr-accent-blue);
+        opacity: 0.5;
+    }
+
+    /* Actieve status */
+    .active .circle-icon {
+        opacity: 1;
+        background: var(--white);
+        border-color: var(--white);
+        transform: translateY(-8px) scale(1.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .active .milestone-label {
+        opacity: 1;
+        color: var(--white);
+    }
+
+    /* Score Display onderaan */
+    .footer-score {
+        margin-top: 40px;
+    }
+
+    .current-value {
+        font-size: 6rem;
+        font-weight: 800;
+        color: var(--white);
+        display: block;
+        line-height: 1;
+    }
+
+    .goal-value {
+        font-size: 1.1rem;
+        color: var(--emdr-accent-blue);
+        margin-top: 10px;
+        display: block;
+        opacity: 0.8;
+    }
+</style>
+
+<div class="container">
+    <h1>SE OLYMPICS</h1>
+    <div class="team-name">SE Golden Dream Team • Punten Tracker</div>
+
+    <div class="progress-section">
+        <div id="bar" class="fill"></div>
+
+        <div id="m400" class="milestone-container" style="left: 20%;">
+            <div class="marker"></div>
+            <div class="milestone-content"><div class="circle-icon">⭐</div><div class="milestone-label">400 PT</div></div>
+        </div>
+
+        <div id="m800" class="milestone-container" style="left: 40%;">
+            <div class="marker"></div>
+            <div class="milestone-content"><div class="circle-icon">⭐</div><div class="milestone-label">800 PT</div></div>
+        </div>
+
+        <div id="m1200" class="milestone-container" style="left: 60%;">
+            <div class="marker"></div>
+            <div class="milestone-content"><div class="circle-icon">🥉</div><div class="milestone-label">BRONS</div></div>
+        </div>
+
+        <div id="m1600" class="milestone-container" style="left: 80%;">
+            <div class="marker"></div>
+            <div class="milestone-content"><div class="circle-icon">🥈</div><div class="milestone-label">ZILVER</div></div>
+        </div>
+
+        <div id="m2000" class="milestone-container" style="left: 100%;">
+            <div class="marker"></div>
+            <div class="milestone-content"><div class="circle-icon">🥇</div><div class="milestone-label">GOUD</div></div>
+        </div>
+
+        <div class="track"></div>
+    </div>
+
+    <div class="footer-score">
+        <span id="score-text" class="current-value">0</span>
+        <span class="goal-value">PUNTEN BEHAALD VAN HET 2000 PUNTEN DOEL</span>
+    </div>
+</div>
+
+<script>
+    <script>
+    // --- INSTELLINGEN ---
+    const sheetID = '16tBjhEyWO85WzNWhz4V8c9W_lvWBGsd28v-NNZpjTbw';
+    const cel = 'K24'; // De cel waar je totaalscore staat
+    const doel = 2000;
+
+    // Functie om de data live op te halen
+    async function updateTracker() {
+        const url = `https://docs.google.com/spreadsheets/d/$16tBjhEyWO85WzNWhz4V8c9W_lvWBGsd28v-NNZpjTbw/gviz/tq?tqx=out:csv&range=${cel}`;
+        
+        try {
+            const response = await fetch(url);
+            const data = await response.text();
+            
+            // Verwijder aanhalingstekens en zet om naar getal
+            const huidigePunten = parseFloat(data.replace(/"/g, '').replace(',', '.'));
+
+            if (!isNaN(huidigePunten)) {
+                const percentage = (huidigePunten / doel) * 100;
+                
+                // Update de balk en tekst
+                document.getElementById('bar').style.width = Math.min(percentage, 100) + '%';
+                document.getElementById('score-text').innerText = huidigePunten;
+
+                // Activeer mijlpalen
+                [400, 800, 1200, 1600, 2000].forEach(m => {
+                    const el = document.getElementById('m' + m);
+                    if (huidigePunten >= m) {
+                        el.classList.add('active');
+                    } else {
+                        el.classList.remove('active');
+                    }
+                });
+            }
+        } catch (error) {
+            console.error("Fout bij ophalen Sheet-data:", error);
+        }
+    }
+
+    // Haal de score op zodra de pagina laadt
+    updateTracker();
+
+    // Optioneel: ververs de score elke 5 minuten automatisch
+    setInterval(updateTracker, 300000);
+</script>
+</script>
